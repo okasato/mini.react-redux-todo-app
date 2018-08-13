@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import TodoItem from './TodoItem';
 
-export default class TodoList extends Component {
+class TodoList extends Component {
 
   render() {
     if (this.props.todos.length <= 0) {
@@ -17,11 +18,6 @@ export default class TodoList extends Component {
             return (
               <TodoItem 
                 todo={todo}
-                checkTodo={this.props.checkTodo}
-                deleteTodo={this.props.deleteTodo}
-                editTodo={this.props.editTodo}
-                // editItem={this.props.editItem}
-                editDone={this.props.editDone}
               />
             )
           })}
@@ -29,4 +25,8 @@ export default class TodoList extends Component {
       )
     }
   }
-} 
+}
+
+const mapStateToProps = state => ({ todos: state.todos });
+
+export default connect(mapStateToProps, null)(TodoList);

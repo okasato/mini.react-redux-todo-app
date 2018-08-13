@@ -1,1 +1,1 @@
-# mini.react-todo-app
+# mini.react-redux-todo-app
