@@ -6,7 +6,7 @@ export default class TodoForm extends Component {
     return (
       <form onSubmit={this.props.addTodo}>
         <input type='text' value={this.props.item} onChange={this.props.updateItem}/>
-        <input type="submit" value='add' />
+        <input type="submit" value='Add' />
       </form>
     )
   }

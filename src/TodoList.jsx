@@ -19,6 +19,9 @@ export default class TodoList extends Component {
                 todo={todo}
                 checkTodo={this.props.checkTodo}
                 deleteTodo={this.props.deleteTodo}
+                editTodo={this.props.editTodo}
+                // editItem={this.props.editItem}
+                editDone={this.props.editDone}
               />
             )
           })}

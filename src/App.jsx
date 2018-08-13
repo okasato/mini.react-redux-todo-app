@@ -52,13 +52,35 @@ export default class App extends Component {
     const item = {
       id: this.getUniqueId(),
       title: this.state.item,
-      isDone: false
+      isDone: false,
+      isEdit: false
     };
+
     const todos = JSON.parse(JSON.stringify(this.state.todos));    
     todos.push(item);
+
     this.setState({
       todos,
       item: ''
+    });
+  }
+
+  editTodo = todo => {
+    const todos = JSON.parse(JSON.stringify(this.state.todos));
+    const position = this.state.todos.indexOf(todo);
+    todos[position].isEdit = !todos[position].isEdit;
+    this.setState({
+      todos
+    });
+  }
+
+  editDone = (todo, item) => {
+    const todos = JSON.parse(JSON.stringify(this.state.todos));
+    const position = this.state.todos.indexOf(todo);
+    todos[position].title = item;
+    todos[position].isEdit = !todos[position].isEdit;
+    this.setState({
+      todos
     });
   }
 
@@ -87,6 +109,9 @@ export default class App extends Component {
           todos={this.state.todos}
           checkTodo={this.checkTodo}
           deleteTodo={this.deleteTodo}
+          editTodo={this.editTodo}
+          editItem={this.editItem}
+          editDone={this.editDone}
         />
         <TodoForm
           item={this.state.item}

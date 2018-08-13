@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../public/style.css';
+import EditTodoForm from './EditTodoForm';
 
 export default class TodoItem extends Component {
 
@@ -17,6 +18,11 @@ export default class TodoItem extends Component {
         </span>
         <span className='cmd' 
           onClick={() => this.props.deleteTodo(this.props.todo)}>[x]</span>
+        <button onClick={() => this.props.editTodo(this.props.todo)}>Edit</button>
+        <EditTodoForm
+          todo={this.props.todo}
+          editDone={this.props.editDone}
+        />
       </li>
     )
   }
