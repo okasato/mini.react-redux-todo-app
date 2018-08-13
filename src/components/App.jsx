@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Todolist from './TodoList';
 import TodoForm from './TodoForm';
 import TodoHeader from './TodoHeader';
+import '../../public/style.css';
 
 export default class App extends Component {  
   // state = {

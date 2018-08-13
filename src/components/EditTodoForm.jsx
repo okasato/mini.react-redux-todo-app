@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editDone } from '../actions';
+import '../../public/style.css';
 
 class EditTodoForm extends Component {
   state = {

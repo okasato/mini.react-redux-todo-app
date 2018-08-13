@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { perge } from '../actions';
+import '../../public/style.css';
 
 class TodoHeader extends Component {
 
