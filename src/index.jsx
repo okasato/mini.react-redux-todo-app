@@ -8,7 +8,7 @@ import App from './components/App.jsx';
 
 const store = createStore(
   todoApp,
-  applyMiddleware(thunk),
+  // applyMiddleware(thunk),
 );
 
 ReactDOM.render(

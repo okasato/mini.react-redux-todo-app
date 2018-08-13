@@ -4,19 +4,22 @@ import { addTodo, updateItem } from '../actions';
 import '../../public/style.css';
 
 class TodoForm extends Component {
+  state = {
+    item: ''
+  }
 
   render() {
     return (
       <form onSubmit={event => {
         event.preventDefault();
-        this.props.addTodo(event);
+        this.props.addTodo(this.state.item);
       }}>
         <input 
           type='text'
-          value={this.props.item} 
+          // value={this.props.item} 
           onChange={event => {
             event.preventDefault();
-            this.props.updateItem(event);
+            this.setState({ item: event.target.value });
           }}/>
         <input type="submit" value='Add' />
       </form>
@@ -26,8 +29,7 @@ class TodoForm extends Component {
 
 const mapStateToProps = state => ({ item: state.item });
 const mapDispatchToProps = dispatch => ({
-  updateItem: event => dispatch(updateItem(event)),
-  addTodo: event => dispatch(addTodo(event)),
+  addTodo: item => dispatch(addTodo(item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);
