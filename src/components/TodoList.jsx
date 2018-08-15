@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TodoItem from './TodoItem';
-import { getList } from '../actions';
 import '../../public/style.css';
+import { deleteTodo, checkTodo } from '../actions';
 
 class TodoList extends Component {
 
   render() {
-    console.log('todos', this.props.todos, this.props.todos.length);
     if (this.props.todos.length <= 0) {
       return (
         <ul>
@@ -19,9 +18,19 @@ class TodoList extends Component {
         <ul>
           {this.props.todos.map(todo => {
             return (
-              <TodoItem 
-                todo={todo}
-              />
+              <li key={todo.id}>
+                <label>
+                  <input type="checkbox"
+                    checked={todo.isDone}
+                    onChange={() => this.props.checkTodo(todo)}
+                  />
+                </label>
+                <span className={todo.isDone ? 'done' : ''}>
+                  {todo.title}
+                </span>
+                <span className='cmd'
+                  onClick={() => this.props.deleteTodo(todo)}>[x]</span>
+              </li>
             )
           })}
         </ul>
@@ -32,7 +41,7 @@ class TodoList extends Component {
 
 const mapStateToProps = state => ({ todos: state.todos });
 const mapDispatchToProps = dispatch => ({
-  getList: () => dispatch(getList())
+  deleteTodo: todo => dispatch(deleteTodo(todo)),
+  checkTodo: todo => dispatch(checkTodo(todo))
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

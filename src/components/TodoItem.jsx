@@ -9,30 +9,32 @@ class TodoItem extends Component {
   render() {
     return (
       <li key={this.props.todo.id}>
-        <label>
+        {/* <label>
           <input type="checkbox"
             checked={this.props.todo.isDone}
             onChange={this.props.checkTodo(this.props.todo)}
           />
-        </label>
+        </label> */}
         <span className={this.props.todo.isDone ? 'done' : ''}>        
           {this.props.todo.title}
         </span>
-        <span className='cmd' 
-          onClick={this.props.deleteTodo(this.props.todo)}>[x]</span>
-        <button onClick={this.props.editTodo(this.props.todo)}>Edit</button>
-        <EditTodoForm
+        <span className='cmd'>[x]</span>
+        {/* <button className='cmd' 
+          onClick={this.props.deleteTodo(this.props.todo)}>[x]</button> */}
+        {/* <button onClick={this.props.editTodo(this.props.todo)}>Edit</button> */}
+        {/* <EditTodoForm
           todo={this.props.todo}
-        />
+        /> */}
       </li>
     )
   }
 }
 
+// const mapStateToProps = state => ({ todos: state.todos });
 const mapDispatchToProps = dispatch => ({
-  checkTodo: todo => dispatch(checkTodo(todo)),
+  // checkTodo: todo => dispatch(checkTodo(todo)),
   deleteTodo: todo => dispatch(deleteTodo(todo)),
-  editTodo: todo => dispatch(editTodo(todo))
+  // editTodo: todo => dispatch(editTodo(todo))
 });
 
 export default connect(null, mapDispatchToProps)(TodoItem);

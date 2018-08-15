@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addTodo, updateItem } from '../actions';
+import { addTodo } from '../actions';
 import '../../public/style.css';
 
 class TodoForm extends Component {
   state = {
-    item: ''
+    input: ''
   }
 
   render() {
     return (
-      <form onSubmit={event => {
-        event.preventDefault();
-        this.props.addTodo(this.state.item);
+      <form onSubmit={e => {
+        e.preventDefault();
+        if (this.state.input.trim() === '') {
+          return;
+        }
+        this.props.addTodo(this.state.input);
+        this.setState({ input: '' });
       }}>
         <input 
           type='text'
-          // value={this.props.item} 
-          onChange={event => {
-            event.preventDefault();
-            this.setState({ item: event.target.value });
+          value={this.state.input}
+          onChange={e => {
+            e.preventDefault();
+            this.setState({ input: event.target.value });
           }}/>
         <input type="submit" value='Add' />
       </form>
@@ -27,9 +31,8 @@ class TodoForm extends Component {
   }  
 }
 
-const mapStateToProps = state => ({ item: state.item });
 const mapDispatchToProps = dispatch => ({
-  addTodo: item => dispatch(addTodo(item)),
+  addTodo: todo => dispatch(addTodo(todo)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);
+export default connect(null, mapDispatchToProps)(TodoForm);

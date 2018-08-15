@@ -10,8 +10,13 @@ const getUniqueId = () => {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case 'ADD_TODO': {
-      console.log('action.todo', action.todo);
-      state.todos = state.todos.concat(action.todo);
+      const item = {
+        id: getUniqueId(),
+        title: action.todo,
+        isDone: false,
+        isEdit: false
+      };
+      state.todos = state.todos.concat(item);
       return Object.assign({}, state);
     }
 
@@ -19,24 +24,25 @@ export default (state = defaultState, action) => {
       if (!confirm('are you sure?')) {
         return;
       }
+      const position = state.todos.indexOf(action.todo);
 
-      state.todos = state.todos.filter(todo => {
-        if (action.todo !== todo) {
+      state.todos = state.todos.filter(((todo, id) => {
+        if (position !== id) {
           return true;
         } else {
           return false;
         }
-      });
+      }));
 
       return Object.assign({}, state);
     }
 
-    // case 'CHECK_TODO': {
-    //   const newState = Object.assign({}, state);
-    //   const position = newState.todos.map(todo => todo.id).indexOf(action.todo.id);  
-    //   newState.todos[position].isDone = !newState.todos[position].isDone;
-    //   return newState;
-    // }
+    case 'CHECK_TODO': {
+      const position = state.todos.map(todo => todo.id).indexOf(action.todo.id);
+      state.todos[position].isDone = !state.todos[position].isDone;
+      console.log('todo.isDone', state.todos[position].isDone);
+      return Object.assign({}, state);
+    }
 
 
     // case 'GET_LIST': {
@@ -65,19 +71,17 @@ export default (state = defaultState, action) => {
     //   return newState;
     // }
 
-    // case 'PERGE': {
-    //   const newState = Object.assign({}, state);
-    //   if (!confirm('are you sure?')) {
-    //     return;
-    //   }
+    case 'PERGE': {
+      if (!confirm('are you sure?')) {
+        return;
+      }
 
-    //   const todos = newState.todos.filter(todo => {
-    //     return !todo.isDone;
-    //   });
+      state.todos = state.todos.filter(todo => {
+        return !todo.isDone;
+      });
 
-    //   newState.todos = todos;
-    //   return newState;
-    // }
+      return Object.assign({}, state);
+    }
 
     default:
       return state;
