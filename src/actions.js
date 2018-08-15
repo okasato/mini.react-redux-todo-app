@@ -1,16 +1,3 @@
-export const getList = () => {
-  return {
-    type: 'GET_LIST'
-  }
-}
-
-export const checkTodo = todo => {
-  return {
-    type: 'CHECK_TODO',
-    todo  
-  }
-}
-
 export const addTodo = todo => {
   return {
     type: 'ADD_TODO',
@@ -25,10 +12,10 @@ export const deleteTodo = todo => {
   }
 }
 
-export const updateItem = event => {
+export const checkTodo = todo => {
   return {
-    type: 'UPDATE_ITEM',
-    event
+    type: 'CHECK_TODO',
+    todo  
   }
 }
 
@@ -39,11 +26,11 @@ export const editTodo = todo => {
   }
 }
 
-export const editDone = (todo, item) => {
+export const editDone = (todo, input) => {
   return {
     type: 'EDIT_DONE',
     todo,
-    item  
+    input  
   }
 }
 

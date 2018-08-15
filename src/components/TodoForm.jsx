@@ -23,7 +23,7 @@ class TodoForm extends Component {
           value={this.state.input}
           onChange={e => {
             e.preventDefault();
-            this.setState({ input: event.target.value });
+            this.setState({ input: e.target.value });
           }}/>
         <input type="submit" value='Add' />
       </form>

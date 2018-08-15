@@ -1,6 +1,5 @@
 const defaultState = {
-  todos: [],
-  item: '',
+  todos: []
 };
 
 const getUniqueId = () => {
@@ -52,26 +51,36 @@ export default (state = defaultState, action) => {
       return Object.assign({}, state);
     }
 
-    // case 'UPDATE_ITEM': {
-    //   const newState = Object.assign({}, state);
-    //   newState.item = action.event.target.value;
-    //   return newState;
-    // }
+    case 'EDIT_TODO': {
+      const position = state.todos.indexOf(action.todo);
 
-    // case 'EDIT_TODO': {
-    //   const newState = Object.assign({}, state);
-    //   const position = newState.todos.indexOf(action.todo);
-    //   newState.todos[position].isEdit = !newState.todos[position].isEdit;
-    //   return newState;
-    // }
+      state.todos = state.todos.map((todo, id) => {
+        if (id === position) {
+          todo.isEdit = !todo.isEdit;
+          return todo;
+        } else {
+          return todo;
+        }
+      });
+
+      return Object.assign({}, state);
+    }
     
-    // case 'EDIT_DONE': {
-    //   const newState = Object.assign({}, state);
-    //   const position = newState.todos.indexOf(action.todo);
-    //   newState.todos[position].title = action.item;
-    //   newState.todos[position].isEdit = !todos[position].isEdit;
-    //   return newState;
-    // }
+    case 'EDIT_DONE': {
+      const position = state.todos.indexOf(action.todo);
+
+      state.todos = state.todos.map((todo, id) => {
+        if (id === position) {
+          todo.title = action.input;
+          todo.isEdit = !todo.isEdit;
+          return todo;
+        } else {
+          return todo;
+        }
+      });
+
+      return Object.assign({}, state);
+    }
 
     case 'PERGE': {
       if (!confirm('are you sure?')) {

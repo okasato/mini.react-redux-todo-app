@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TodoItem from './TodoItem';
 import '../../public/style.css';
-import { deleteTodo, checkTodo } from '../actions';
+import { deleteTodo, checkTodo, editTodo } from '../actions';
+import EditTodoForm from './EditTodoForm';
 
 class TodoList extends Component {
 
@@ -30,6 +30,11 @@ class TodoList extends Component {
                 </span>
                 <span className='cmd'
                   onClick={() => this.props.deleteTodo(todo)}>[x]</span>
+                <button onClick={() => this.props.editTodo(todo)}>Edit</button>
+                <EditTodoForm
+                  todo={todo}
+                  isEdit={todo.isEdit}
+                />
               </li>
             )
           })}
@@ -41,6 +46,7 @@ class TodoList extends Component {
 
 const mapStateToProps = state => ({ todos: state.todos });
 const mapDispatchToProps = dispatch => ({
+  editTodo: todo => dispatch(editTodo(todo)),
   deleteTodo: todo => dispatch(deleteTodo(todo)),
   checkTodo: todo => dispatch(checkTodo(todo))
 });

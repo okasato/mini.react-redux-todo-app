@@ -5,32 +5,27 @@ import '../../public/style.css';
 
 class EditTodoForm extends Component {
   state = {
-    currentItem: this.props.todo.title
-  }
-
-  editItem = event => {
-    event.preventDefault();
-
-    this.setState({
-      currentItem: event.target.value
-    });
+    input: this.props.todo.title
   }
 
   render() {
-    if (!this.props.todo.isEdit) {
+    if (!this.props.isEdit) {
       return (
         <div></div>
       )
     } else {
       return (
-        <form onSubmit={event => {
-          event.preventDefault();
-          this.props.editDone(this.props.todo, this.state.currentItem);
+        <form onSubmit={e => {
+          e.preventDefault();
+          this.props.editDone(this.props.todo, this.state.input);
         }}>
           <input 
             type='text' 
-            value={this.state.currentItem} 
-            onChange={this.editItem}
+            value={this.state.input}
+            onChange={e => {
+              e.preventDefault();
+              this.setState({ input: e.target.value });
+            }}
           />
           <input type="submit" value='Done' />
         </form>
@@ -40,7 +35,7 @@ class EditTodoForm extends Component {
 } 
 
 const mapDispatchToProps = dispatch => ({
-  editDone: (todo, item) => dispatch(editDone(todo, item))
+  editDone: (todo, input) => dispatch(editDone(todo, input))
 });
 
 export default connect(null, mapDispatchToProps)(EditTodoForm);
