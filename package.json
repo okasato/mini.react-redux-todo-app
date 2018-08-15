@@ -1,5 +1,5 @@
 {
-  "name": "mini.react-todo-app",
+  "name": "mini.react-redux-todo-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/okasato/mini.react-todo-app.git"
+    "url": "git+https://github.com/okasato/mini.react-redux-todo-app.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/okasato/mini.react-todo-app/issues"
+    "url": "https://github.com/okasato/mini.react-redux-todo-app/issues"
   },
-  "homepage": "https://github.com/okasato/mini.react-todo-app#readme",
+  "homepage": "https://github.com/okasato/mini.react-redux-todo-app#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
