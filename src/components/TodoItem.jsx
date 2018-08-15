@@ -9,16 +9,16 @@ class TodoItem extends Component {
   render() {
     return (
       <li key={this.props.todo.id}>
-        {/* <label>
+        <label>
           <input type="checkbox"
             checked={this.props.todo.isDone}
             onChange={this.props.checkTodo(this.props.todo)}
           />
-        </label> */}
-        <span className={this.props.todo.isDone ? 'done' : ''}>        
+        </label>
+        {/* <span className={this.props.todo.isDone ? 'done' : ''}>        
           {this.props.todo.title}
         </span>
-        <span className='cmd'>[x]</span>
+        <span className='cmd'>[x]</span> */}
         {/* <button className='cmd' 
           onClick={this.props.deleteTodo(this.props.todo)}>[x]</button> */}
         {/* <button onClick={this.props.editTodo(this.props.todo)}>Edit</button> */}
@@ -32,8 +32,8 @@ class TodoItem extends Component {
 
 // const mapStateToProps = state => ({ todos: state.todos });
 const mapDispatchToProps = dispatch => ({
-  // checkTodo: todo => dispatch(checkTodo(todo)),
-  deleteTodo: todo => dispatch(deleteTodo(todo)),
+  checkTodo: todo => dispatch(checkTodo(todo)),
+  // deleteTodo: todo => dispatch(deleteTodo(todo)),
   // editTodo: todo => dispatch(editTodo(todo))
 });
 

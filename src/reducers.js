@@ -40,15 +40,9 @@ export default (state = defaultState, action) => {
     case 'CHECK_TODO': {
       const position = state.todos.map(todo => todo.id).indexOf(action.todo.id);
       state.todos[position].isDone = !state.todos[position].isDone;
-      console.log('todo.isDone', state.todos[position].isDone);
+      console.log(state);
       return Object.assign({}, state);
     }
-
-
-    // case 'GET_LIST': {
-    //   const currentState = Object.assign({}, state);
-    //   return currentState;
-    // }
 
     // case 'UPDATE_ITEM': {
     //   const newState = Object.assign({}, state);
